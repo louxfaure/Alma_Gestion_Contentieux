@@ -12,7 +12,7 @@ from Services import AlmaReport, logs,mail, AlmaUser
 
 SERVICE = "Alma_Gestion_Contentieux"
 REP = '/tmp/Notices_a_fusionner/'
-LOGS_LEVEL = 'DEBUG'
+LOGS_LEVEL = 'INFO'
 LOGS_DIR = getenv('LOGS_PATH')
 EXPORT_JOB_PAREMETERS_FILE = './Conf/export_job_parameters.xml'
 INSTITUTIONS = ['33PUDB_UB','33PUDB_UBM','33PUDB_IEP','33PUDB_BXSA','33PUDB_INP']
