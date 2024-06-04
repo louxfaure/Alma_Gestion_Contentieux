@@ -52,6 +52,7 @@ class Lecteur(object):
             "segment_type": "Internal"
             }
         bloquage["block_note"] = "Retard sur document emprunté à {}".format(bib)
+        del self.lecteur["user_role"] 
         self.lecteur["user_block"].append(bloquage)
         status,response = self.appel_api.request('PUT', 
                                   
@@ -69,6 +70,7 @@ class Lecteur(object):
         # On parcourt la liste des blocages
         liste_blocages_filtree = [blocage for blocage in liste_blocages if blocage["block_description"]["value"] not in ["CONTACT1","CONTACT2","CONTACT3","RETARD"]]
         self.logger.debug(json.dumps(liste_blocages_filtree,indent=4))
+        del self.lecteur["user_role"]
         self.lecteur["user_block"] = liste_blocages_filtree
         status,response = self.appel_api.request('PUT', 
                                   
