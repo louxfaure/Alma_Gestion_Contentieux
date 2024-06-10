@@ -28,12 +28,15 @@ class Lecteur(object):
                                        'https://api-eu.hosted.exlibrisgroup.com/almaws/v1/users/{}?user_id_type=all_unique&view=full'.format(self.id),
                                         accept='json')
         self.lecteur = self.appel_api.extract_content(response)
+        self.mef_lecteur()
         if status == 'Error':
             self.est_erreur = True
             self.error_message = response
 
-
-        
+    def mef_lecteur(self):
+        del self.lecteur["user_role"]
+        if self.lecteur["account_type"]["value"] == "INTERNAL" :
+            del self.lecteur["external_id"]
 
     def bloque_lecteur(self, bib="") :
         ''' Créer un blocge lecteur de type Retard > 35 j
@@ -52,7 +55,6 @@ class Lecteur(object):
             "segment_type": "Internal"
             }
         bloquage["block_note"] = "Retard sur document emprunté à {}".format(bib)
-        del self.lecteur["user_role"] 
         self.lecteur["user_block"].append(bloquage)
         status,response = self.appel_api.request('PUT', 
                                   
@@ -70,7 +72,7 @@ class Lecteur(object):
         # On parcourt la liste des blocages
         liste_blocages_filtree = [blocage for blocage in liste_blocages if blocage["block_description"]["value"] not in ["CONTACT1","CONTACT2","CONTACT3","RETARD"]]
         self.logger.debug(json.dumps(liste_blocages_filtree,indent=4))
-        del self.lecteur["user_role"]
+
         self.lecteur["user_block"] = liste_blocages_filtree
         status,response = self.appel_api.request('PUT', 
                                   
