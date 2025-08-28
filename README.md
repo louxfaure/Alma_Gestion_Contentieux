@@ -1,6 +1,6 @@
 # Programme de gestion des contentieux
 Ce script python permet d'ajouter une note bloquante de type "Retard > 35 J" sur les comptes des lecteurs ayant des documents empruntés avec un retard supérieur à 35 jours.
-Il permet aussi de lever les notes blocantes de type "Retard > 35 J", "Contact 1 suivi de contentieux", "Contact 2 suivi de contentieux" et "Contact 3 suivi de contentieux" sur tous les comptes des lecteurs n'ayant plus de documents en retard.
+Il permet aussi de lever les notes bloquantes de type "Retard > 35 J", "Contact 1 suivi de contentieux", "Contact 2 suivi de contentieux" et "Contact 3 suivi de contentieux" sur tous les comptes des lecteurs n'ayant plus de documents en retard.
 ## Ajout de la note bloquante
 Pour identifier les comptes à bloquer le programme s'appuie sur le rapport analytique suivant : /shared/Bordeaux NZ 33PUDB_NETWORK/prod/Services aux publics/Gestion des retards et des contentieux/Pour Automatisation/Lecteurs Retards 35j a bloquer SQL". 
 Le rapport extrait le code de l'institution et l'identifiant des lecteurs (Primary Id) ayant :
